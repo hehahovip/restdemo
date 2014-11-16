@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.hehaho.restdemo.beans.Person;
+import com.hehaho.restdemo.beans.Puppy;
 import com.hehaho.restdemo.persistence.PersonDao;
 
 /**
@@ -30,7 +31,8 @@ public class PersonDaoImpl extends HibernateDaoSupport implements PersonDao {
 	 */
 	@Override
 	public List<Person> getAllPerson() {
-		return getHibernateTemplate().find("from Person p");
+		List<Person> list = getHibernateTemplate().find("from Person p");
+		return list;
 	}
 
 	/* (non-Javadoc)

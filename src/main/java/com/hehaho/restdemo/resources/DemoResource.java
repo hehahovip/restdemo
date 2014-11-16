@@ -3,6 +3,7 @@
  */
 package com.hehaho.restdemo.resources;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.GET;
@@ -63,12 +64,12 @@ public class DemoResource {
 		
 		Puppy p1 = new Puppy();
 		p1.setId(UUID.randomUUID().toString());
-		p1.setName("adf");
+		p1.setName("adfadfadfsf");
 		p1.setPerson(p);
 		
 		Puppy p2 = new Puppy();
 		p2.setId(UUID.randomUUID().toString());
-		p2.setName("ghd");
+		p2.setName("gdafafahd");
 		p2.setPerson(p);
 		
 		p.getPuppies().add(p1);
@@ -78,13 +79,22 @@ public class DemoResource {
 		
 		return Response.status(Status.CREATED).entity("gg").build();
 	}
+	
+	@GET
+	@Path("/person")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getPerson() {
+		List<Person> list = demoService.getAllPerson(); 
+		Gson g = new Gson();
+		
+		return Response.status(Status.OK).entity(g.toJson(list)).build();
+    }
 
 	public DemoService getDemoService() {
 		return demoService;
 	}
 
 	
-//	@Required
 	public void setDemoService(DemoService demoService) {
 		this.demoService = demoService;
 	}

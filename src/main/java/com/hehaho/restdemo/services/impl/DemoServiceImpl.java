@@ -5,13 +5,13 @@ package com.hehaho.restdemo.services.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hehaho.restdemo.beans.Person;
+import com.hehaho.restdemo.beans.Puppy;
 import com.hehaho.restdemo.persistence.PersonDao;
 import com.hehaho.restdemo.services.DemoService;
 
@@ -20,6 +20,7 @@ import com.hehaho.restdemo.services.DemoService;
  *
  */
 @Component
+@Transactional
 public class DemoServiceImpl implements DemoService {
 
 	private PersonDao personDao;
@@ -42,6 +43,15 @@ public class DemoServiceImpl implements DemoService {
 	@Override
 	public List<Person> getAllPerson() {
 		List<Person> list = personDao.getAllPerson();
+		for(Person person: list){
+//			person.setPuppies(null);
+			List<Puppy> puppies = person.getPuppies();
+			
+			for(Puppy p : puppies){
+				System.out.println(p.getId());
+				p.setPerson(null);
+			}
+		}
 		return list;
 	}
 

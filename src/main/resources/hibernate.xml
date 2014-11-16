@@ -40,6 +40,12 @@
 		</property>
 	</bean>
 
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
 	<bean id="personDao" class="com.hehaho.restdemo.persistence.impl.PersonDaoImpl"
 		p:sessionFactory-ref="sessionFactory" />
 

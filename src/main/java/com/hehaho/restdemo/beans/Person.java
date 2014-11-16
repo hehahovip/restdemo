@@ -74,8 +74,8 @@ public class Person {
 		this.email = email;
 	}
 
-	@OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
-	@JoinTable(name="Puppy", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="personId"))
+	@OneToMany(cascade={CascadeType.ALL}, fetch=FetchType.LAZY, mappedBy="person")
+	//@JoinTable(name="Puppy", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="personId"))
 	public List<Puppy> getPuppies() {
 		return puppies;
 	}
